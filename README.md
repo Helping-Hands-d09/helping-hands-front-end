@@ -12,3 +12,6 @@ The **Helping Hands** application allows the campaign organizers and volunteers 
 The user stories are located in the [project management board](https://trello.com/b/K1n2wxGo/final-project-helping-hands), on Trello.
 
 ## Wireframe: [wireframe image](images/WireFrame.png)
+
+## Database Schema Diagram
+![data base](./images/db.png)
