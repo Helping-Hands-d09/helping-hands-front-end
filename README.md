@@ -13,5 +13,9 @@ The user stories are located in the [project management board](https://trello.co
 
 ## Wireframe: [wireframe image](images/WireFrame.png)
 
+## Domain Modeling
+
+![Model](images/DomainModel.PNG)
+
 ## Database Schema Diagram
 ![data base](./images/db.png)
