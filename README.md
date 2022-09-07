@@ -8,3 +8,7 @@
 ## Description:
 
 The **Helping Hands** application allows the campaign organizers and volunteers to find eachother, and to be able to connect and communicate effectively.
+
+## User Stories:
+
+The user stories are located in the [project management board](https://trello.com/b/K1n2wxGo/final-project-helping-hands), on Trello.
