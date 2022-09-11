@@ -1,7 +1,7 @@
 
 export default function Campaigns() {
     return (
-      <div class="m-20 p-10 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div class="max-w-xl m-20 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img class="rounded-t-lg" src="\image\card.jpg" alt=""></img>
         </a>

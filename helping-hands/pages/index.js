@@ -8,16 +8,11 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-    <div>
-
-    <Head>
-    <title>Helping Hands</title>
-
-     </Head>
-     <Campaigns />
-
-    </div>
-
-
-  )
+    <>
+      <Head></Head>
+      <main className='flex  justify-around'>
+        <Campaigns />
+      </main>
+    </>
+  );
 }
