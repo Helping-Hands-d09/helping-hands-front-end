@@ -8,16 +8,11 @@ export default function Campaigns() {
         <div class="p-5">
           <a href="#">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Volunteering Campaign
+              Volunteering Campaigns
             </h5>
           </a>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut
-            felis tempor erat hendrerit molestie. Sed semper sit amet ex ac
-            tempor. Etiam a imperdiet turpis, vitae consectetur turpis.
-            Vestibulum rutrum ac sapien in facilisis. Aliquam erat volutpat.
-            Quisque rutrum efficitur felis ac dapibus. Nulla facilisi. Cras eget
-            libero sed orci porta volutpat id eu eros.
+              ...
           </p>
           <a
             href="#"

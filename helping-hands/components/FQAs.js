@@ -1,1 +1,6 @@
-export default function FQAs(){}
+export default function FQAs(){
+
+    return<>
+    <p>Hello</p>
+    </>
+}
