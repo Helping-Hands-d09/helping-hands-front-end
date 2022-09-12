@@ -1,18 +1,18 @@
 import Head from 'next/head'
-
+import Hero from '../components/Hero'
 
 import Header from '../components/Header'
-import Campaigns from '../components/Campaigns'
+// import Campaigns from '../components/Campaigns'
 import Footer from '../components/Footer'
 
 export default function Home() {
   return (
     <>
-        <Head>
+      <Head>
         <title>  Helping Hands  </title>
-        </Head>
+      </Head>
+      <Hero/>
       <main className='flex  justify-around'>
-        <Campaigns />
       </main>
     </>
   );
