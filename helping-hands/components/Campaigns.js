@@ -12,7 +12,10 @@ export default function Campaigns() {
             </h5>
           </a>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              ...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            id lorem nec massa varius hendrerit. Suspendisse mattis, ex eu
+            venenatis hendrerit, est sapien accumsan est, vel auctor ligula
+            neque ut metus. Ut porta commodo neque, maximus maximus massa.
           </p>
           <a
             href="#"
