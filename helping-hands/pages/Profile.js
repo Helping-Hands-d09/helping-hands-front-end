@@ -9,7 +9,6 @@ import JoinedCampaigns from "../components/JoinedCampaigns"
 export default function Profile() {
   return (
     <>
-    <PersonalInfo/>
     <br></br>
     <Posts/>
     <br></br>
