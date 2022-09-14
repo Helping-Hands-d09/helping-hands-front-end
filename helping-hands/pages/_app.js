@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Header from '../components/Header'
+import NavBar from "../components/NavBar";
 import Footer from '../components/Footer'
 import Head from 'next/head'
 
@@ -7,13 +7,13 @@ import Head from 'next/head'
 function MyApp({ Component, pageProps }) {
   return (
     <>
-       <Head>
-        <title>  Helping Hands  </title>
+      <Head>
+        <title> Helping Hands </title>
       </Head>
-      <Header />
-        <Component {...pageProps} />
-      <Footer/>
+      <NavBar />
+      <Component {...pageProps} />
+      <Footer />
     </>
-)}
+  );}
 
 export default MyApp

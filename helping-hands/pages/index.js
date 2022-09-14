@@ -1,6 +1,5 @@
 import Hero from '../components/Hero'
 
-import Header from '../components/Header'
 // import Campaigns from '../components/Campaigns'
 import Footer from '../components/Footer'
 
