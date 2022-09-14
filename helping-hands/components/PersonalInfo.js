@@ -16,10 +16,7 @@ export default function PersonalInfo() {
          
         </div>
    
-    <div class="container mx-auto my-5 p-5">
-        {/* <div class="md:flex no-wrap md:-mx-2 "> */}
-           
-            <div class="w-full md:w-3/12 md:mx-2">
+ <div>
      
                 <div class="bg-white p-3 border-t-4 border-green-400">
                     <div class="image overflow-hidden">
@@ -47,7 +44,7 @@ export default function PersonalInfo() {
               
             </div>
           
-            <div class="w-full md:w-12/12 mx-2 h-64">
+            {/* <div class="w-full md:w-12/12 mx-2 h-64"> */}
             
                 {/* <!-- About Section --> */}
                 <div class="bg-white p-3 shadow-sm rounded-sm">
@@ -79,8 +76,6 @@ export default function PersonalInfo() {
                             </div>
                         
                             
-                       
-                         
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Email.</div>
                                 <div class="px-4 py-2">
@@ -94,14 +89,10 @@ export default function PersonalInfo() {
                 </div>
          
 
-                <div class="my-4"></div>
 
             
-          
-        </div>
-    </div>
-</div>
-</div>
+          </div>
+          </div>
     </>
   )
 }
