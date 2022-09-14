@@ -15,7 +15,7 @@ export default function Feed() {
            New post
             </button> */}
             <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
-           Create Campaign
+           <a href="Createcampain">Create Campaign</a>
             </button>
             </div>
           </div>

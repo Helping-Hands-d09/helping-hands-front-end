@@ -8,8 +8,8 @@ import UsersHomepage from "../components/UsersHomepage"
 
 
 export default function Profile() {
-  return (
-    <>
+  return(
+      <>
     <br></br>
     {/* <Posts/> */}
     <UsersHomepage/>
@@ -19,6 +19,6 @@ export default function Profile() {
     <JoinedCampaigns/>
     <PersonalInfo/>
     <br></br>
-    </>
-  )
+    </>)
+ 
 }
