@@ -111,4 +111,34 @@
         },
         "member": 1
     }
+    ,
+    {
+        "id": 7,
+        "campaign": {
+            "id": 10,
+            "organizer": {
+                "id": 10,
+                "first_name": "testing",
+                "last_name": "test",
+                "email": "admin@admin.com",
+                "phone": "165484894564",
+                "image": "image/card.jpg"
+            },
+            "category": {
+                "id": 10,
+                "title": "cat3"
+            },
+            "location": {
+                "id": 10,
+                "city_name": "loc1"
+            },
+            "title": "camp2",
+            "description": "jsldfjsdf",
+            "date": "2022-09-10",
+            "available_sets": 17,
+            "image": "image/card.jpg"
+        },
+        "member": 1
+    }
+    
 ]

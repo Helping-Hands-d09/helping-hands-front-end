@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import { AuthWrapper } from "../contexts/Auth";
 import Head from 'next/head'
-import Header from '../components/Header'
+import NavBar from "../components/NavBar";
 import Footer from '../components/Footer'
 
 
@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>  Helping Hands  </title>
       </Head>
-      <Header />
+      <NavBar />
       <Component {...pageProps} />
       <Footer />
     </AuthWrapper>
