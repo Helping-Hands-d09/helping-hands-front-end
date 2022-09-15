@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { AuthWrapper } from "../contexts/Auth";
+import { AuthProvider } from "../contexts/Auth";
 import Head from 'next/head'
 import NavBar from "../components/NavBar";
 import Footer from '../components/Footer'
@@ -8,14 +8,15 @@ import Footer from '../components/Footer'
 function MyApp({ Component, pageProps }) {
 
   return (
-    <AuthWrapper>
+    <AuthProvider>
       <Head>
         <title>  Helping Hands  </title>
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
       </Head>
       <NavBar />
       <Component {...pageProps} />
       <Footer />
-    </AuthWrapper>
+    </AuthProvider>
 
   )
 }
