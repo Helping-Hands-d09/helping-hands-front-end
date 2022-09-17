@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+      <link rel="icon" href="image/hand-13.jpg" />
         <title> Helping Hands </title>
       </Head>
       <NavBar />
