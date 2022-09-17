@@ -10,15 +10,11 @@ export default function Home() {
 
   return (
     <>
-    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
-      {
-        tokens ? 
-        <main className='flex  justify-around'>
-          <h1>Helloooooooooooooooooooo</h1>
-        </main>
-        :
-        <Hero />
-      }
+   
+      <Hero/>
+      <main className='flex justify-around'>
+      
+      </main>
     </>
   );
 }
