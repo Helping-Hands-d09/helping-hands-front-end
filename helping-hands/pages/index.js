@@ -8,7 +8,8 @@ export default function Home() {
     <>
    
       <Hero/>
-      <main className='flex  justify-around'>
+      <main className='flex justify-around'>
+      
       </main>
     </>
   );
