@@ -59,7 +59,7 @@ export default function MyPosts() {
               </div>
             </div>
             <div class="flex-grow h-0 overflow-auto">
-              {/* <CampaignsAsPosts /> */}
+              <CampaignsAsPosts />
               <Feed />
             </div>
           </div>
