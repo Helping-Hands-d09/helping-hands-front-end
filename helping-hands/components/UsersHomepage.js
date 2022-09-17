@@ -5,7 +5,7 @@ import CampaignsAsPosts from "./CampaignsAsPosts";
 export default function MyPosts() {
   return (
     <>
-      {/* Right Section */}
+      {/* Left Section */}
       <div class="flex justify-center h-screen px-4 text-gray-700">
         <div class="flex w-full max-w-screen-lg">
           <div class="flex flex-col w-64 py-4 pr-3">
@@ -69,16 +69,18 @@ export default function MyPosts() {
 
           {/*################# Changing component #########################*/}
 
-          {/* Left */}
+          {/* Right */}
           <div class="flex flex-col flex-shrink-0 w-1/4 py-4 pl-4">
             <div>
               <h3 class="mt-6 font-semibold">Section</h3>
               <div class="flex w-full py-4 border-b border-gray-300">
-                <span class="flex-shrink-0 w-10 h-10 bg-gray-400 rounded-full"></span>
+                <span class="flex-shrink-0 w-10 h-10 bg-gray-400 rounded-full">
+                  <img src="/image/hand-13.jpg"></img>
+                </span>
                 <div class="flex flex-col flex-grow ml-2">
                   <div class="flex text-sm">
-                    <span class="font-semibold">Username</span>
-                    <span class="ml-1">@username</span>
+                    <span class="font-semibold">Campaign</span>
+                    <span class="ml-1">Date</span>
                   </div>
                   <p class="mt-1 text-sm">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, et
