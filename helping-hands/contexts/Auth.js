@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 
@@ -16,10 +16,19 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
 
+    // const [lsData, setLsData] = useState(null)
     let lsData = null
     if (typeof window !== 'undefined') {
         lsData = localStorage.getItem("AuthTokens");
     }
+
+//     useEffect(() => {
+//         if (typeof window !== 'undefined') {
+//             setLsData(localStorage.getItem("AuthTokens"))
+//         }
+// }, [])
+
+    // useEffect(() => setLsData(localStorage.getItem("AuthTokens")), [])
 
     const [tokens, setTokens] = useState(() =>
         lsData ? JSON.parse(lsData) : null
@@ -52,6 +61,7 @@ export function AuthProvider({ children }) {
                 setTokens(res.data); // access + refresh
                 setUserInfo(jwt_decode(res.data.access)); // user_id 
                 localStorage.setItem("AuthTokens", JSON.stringify(res.data))
+                return true
             }
         }
         catch (error) {
@@ -81,7 +91,7 @@ export function AuthProvider({ children }) {
 
     function isAuth() {
         try {
-            console.log(4444444, tokens.access, tokens.refresh)
+            // console.log(4444444, tokens.access, tokens.refresh)
             if (tokens.access && tokens.refresh) {
                 const access = jwt_decode(tokens?.access);
                 const refresh = jwt_decode(tokens?.refresh);
