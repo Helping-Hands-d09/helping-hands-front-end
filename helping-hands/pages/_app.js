@@ -12,6 +12,8 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>  Helping Hands  </title>
         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+        <link rel="icon" href="image/hand-13.jpg" />
+
       </Head>
       <NavBar />
       <Component {...pageProps} />
