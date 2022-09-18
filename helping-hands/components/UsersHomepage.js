@@ -60,7 +60,7 @@ export default function MyPosts() {
             </div>
             <div class="flex-grow h-0 overflow-auto">
               <CampaignsAsPosts />
-              <Feed />
+              {/* <Feed /> */}
             </div>
           </div>
 
