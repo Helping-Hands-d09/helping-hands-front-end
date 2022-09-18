@@ -23,7 +23,7 @@ export default function MyPosts() {
             </a>
             <a
               class="px-3 py-2 mt-2 text-lg font-medium rounded-sm hover:bg-gray-300"
-              href="#"
+              href="Campaigns"
             >
               Profile
             </a>
@@ -70,7 +70,7 @@ export default function MyPosts() {
           {/*################# Changing component #########################*/}
 
           {/* Left */}
-          <div class="flex flex-col flex-shrink-0 w-1/4 py-4 pl-4">
+          {/* <div class="flex flex-col flex-shrink-0 w-1/4 py-4 pl-4">
             <div>
               <h3 class="mt-6 font-semibold">Section</h3>
               <div class="flex w-full py-4 border-b border-gray-300">
@@ -111,9 +111,9 @@ export default function MyPosts() {
                     dolore magna aliqua.
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
+              </div> */}
+            {/* </div>
+          </div> */}
         </div>
       </div>
     </>
