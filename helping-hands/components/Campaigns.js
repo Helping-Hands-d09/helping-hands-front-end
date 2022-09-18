@@ -24,7 +24,7 @@ export default function Campaigns() {
     if (tokens) {
 
      
-      
+
       router.push("/Campaigns")
   } else {
       router.push('/login')
@@ -33,7 +33,7 @@ export default function Campaigns() {
 
   const fetcher = async (campaignUrl) => await axios.get(campaignUrl).then((res) => res.data);
   const { data, error } = useSWR(campaignUrl, fetcher);
-  // console.log(data)
+   console.log(data)
 
   if (error) <p>Loading failed...</p>; 
   if (!data) <h1>Loading...</h1>;
