@@ -4,10 +4,40 @@ import Image from 'next/image'
 // \image\hand-13.jpg
 import { useAuth } from '../contexts/Auth'
 import { useContext } from "react";
+import { useState } from 'react'
+
+import useSWR from "swr";
+import axios from "axios";
+
+
 
 export default function Header(props) {
-
+  const campaignUrl = 'https://helping-hands-api.herokuapp.com/api/v1/campaign/';
+  const fetcher = async (campaignUrl) => await axios.get(campaignUrl).then((res) => res.data);
+  const { data, error } = useSWR(campaignUrl, fetcher);
+  console.log(data)
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
   const { tokens, logout } = useAuth()
+
+  const handleFilter = (event) => {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+    const newFilter = data && data.filter((value) => {
+      return value.title.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
+
+  const clearInput = () => {
+    setFilteredData([]);
+    setWordEntered("");
+  };
 
 
   return (
@@ -47,7 +77,7 @@ export default function Header(props) {
               </svg>
               <span className="sr-only">Search</span>
             </button>
-            <div className="relative hidden md:block">
+            <div className="relative hidden md:block"  value={wordEntered}   onChange={handleFilter}>
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
                   className="w-5 h-5 text-gray-500"
@@ -71,6 +101,17 @@ export default function Header(props) {
                 placeholder="Search..."
                 wtx-context="280DA549-C6B7-4D0E-84AA-AD2F93DE9FE2"
               ></input>
+                {filteredData.length != 0 && (
+        <div >
+          {filteredData.slice(0, 15).map((value, key) => {
+            return (
+              <a href={value.description}>
+                <p>{value.title} </p>
+              </a>
+            );
+          })}
+        </div>
+        )}
             </div>
 
             {tokens &&
