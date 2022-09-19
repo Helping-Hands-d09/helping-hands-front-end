@@ -17,8 +17,8 @@ export default function Createdcampiagn() {
     const categoriesURL = "https://helping-hands-api.herokuapp.com/api/v1/campaign/category/"
     const locationsURL = "https://helping-hands-api.herokuapp.com/api/v1/campaign/location/"
     const createCampaignURL = "https://helping-hands-api.herokuapp.com/api/v1/campaign/"
+    const connectionInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/connection/"
 
-    
 
     useEffect(() => {
         (async () => {
@@ -51,8 +51,15 @@ export default function Createdcampiagn() {
             available_sets: parseInt(e.target.available_seats.value),
             image: null
         }
+        
         console.log(userInput);
-        axios.post(createCampaignURL, userInput, config);
+        let res = axios.post(createCampaignURL, userInput, config);
+        console.log("000000000", res.data);
+
+        // let connection = {
+        //     campaign: res
+        // }
+
         // router.push('/HomePage');
     }
 
@@ -109,7 +116,7 @@ export default function Createdcampiagn() {
                                 wtx-context="C0728200-6944-4ABD-8232-7B84ABFF0B40"
                             ></input>
                         </div>
-                        <div>
+                        {/* <div>
                             <label
                                 for="phone"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -125,7 +132,7 @@ export default function Createdcampiagn() {
                                 required=""
                                 wtx-context="BABF454A-A79B-41A8-9DAA-9C28A2E1C556"
                             ></input>
-                        </div>
+                        </div> */}
                         <div>
                             <label
                                 for="description"

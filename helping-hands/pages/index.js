@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 
 import { useAuth } from '../contexts/Auth'
 import { useContext } from "react";
+import Script from 'next/script'
 
 export default function Home() {
   const { tokens, userInfo } = useAuth()
@@ -11,7 +12,14 @@ export default function Home() {
 
   return (
     <>
-      <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+      <Script
+        id="stripe-js"
+        src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"
+        onLoad={() => {
+          console.log("has been loaded");
+        }}
+      />
+      {/* <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script> */}
       {/* {
         tokens ? 
         <main className='flex justify-around'>

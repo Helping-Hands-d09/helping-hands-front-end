@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
+import cookie from 'react-cookies'
 
 const createUserUrl = "https://helping-hands-api.herokuapp.com/api/v1/users/register/";
 const loginURL = "https://helping-hands-api.herokuapp.com/api/token/"
@@ -19,22 +20,27 @@ export function AuthProvider({ children }) {
     // const [lsData, setLsData] = useState(null)
     let lsData = null
     if (typeof window !== 'undefined') {
-        lsData = localStorage.getItem("AuthTokens");
+        // lsData = localStorage.getItem("AuthTokens");
+        lsData = cookie.load('AuthTokens')
     }
 
-//     useEffect(() => {
-//         if (typeof window !== 'undefined') {
-//             setLsData(localStorage.getItem("AuthTokens"))
-//         }
-// }, [])
+    //     useEffect(() => {
+    //         if (typeof window !== 'undefined') {
+    //             setLsData(localStorage.getItem("AuthTokens"))
+    //         }
+    // }, [])
 
     // useEffect(() => setLsData(localStorage.getItem("AuthTokens")), [])
 
     const [tokens, setTokens] = useState(() =>
-        lsData ? JSON.parse(lsData) : null
+    // lsData ? JSON.parse(lsData.access) : null
+    {
+        console.log(cookie.load('AuthTokens'));
+        return cookie.load('AuthTokens') ? cookie.load('AuthTokens') : null
+    }
     );
     const [userInfo, setUserInfo] = useState(() => {
-        return lsData ? jwt_decode(lsData).user_id : null;
+        return lsData ? jwt_decode(lsData.access).user_id : null;
     });
 
     async function signup(userInput) {
@@ -60,7 +66,9 @@ export function AuthProvider({ children }) {
             if (res.status === 200) {
                 setTokens(res.data); // access + refresh
                 setUserInfo(jwt_decode(res.data.access)); // user_id 
-                localStorage.setItem("AuthTokens", JSON.stringify(res.data))
+                // localStorage.setItem("AuthTokens", JSON.stringify(res.data))
+                cookie.save('AuthTokens', res.data)
+                console.log(res.data.access);
                 return true
             }
         }
@@ -83,7 +91,8 @@ export function AuthProvider({ children }) {
             console.log(55555555555, newTokens);
             setTokens(newTokens);
             // setUserInfo(jwt_decode(newTokens.access));
-            localStorage.setItem("AuthTokens", JSON.stringify(newTokens));
+            // localStorage.setItem("AuthTokens", JSON.stringify(newTokens));
+            cookie.save('AuthTokens', res.data, { path: '/' })
         } else {
             logout();
         }
@@ -118,7 +127,8 @@ export function AuthProvider({ children }) {
     function logout() {
         setTokens(null);
         setUserInfo(null);
-        localStorage.removeItem("AuthTokens")
+        // localStorage.removeItem("AuthTokens")
+        cookie.remove('AuthTokens', { path: '/' })
     }
 
     const globalState = {

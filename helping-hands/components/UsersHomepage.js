@@ -10,6 +10,7 @@ export default function MyPosts() {
 
   const { userInfo } = useAuth();
   const userInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/users/"
+  const connectionInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/connection/"
 
   // console.log("0000000", userInfo);
 
