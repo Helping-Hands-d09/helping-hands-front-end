@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/Auth'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap'
+import PostInput from "./PostInput";
 
 export default function MyPosts() {
 
@@ -68,6 +69,8 @@ export default function MyPosts() {
                   <a href="Createpost">Create Post</a>
                 </button> */}
                 {/* <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
+                <PostInput/>
+                <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
                   <a href="Createcampain">Create Campaign</a>
                 </button> */}
 
