@@ -7,7 +7,7 @@ export default function CampaignsAsPosts() {
 
 
   const { data, error } = useSWR(url, fetcher);
-  console.log(data)
+  // console.log(data)
 
   if (error) <p>Loading failed...</p>; 3
   
