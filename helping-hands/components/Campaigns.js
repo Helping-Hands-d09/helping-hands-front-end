@@ -1,14 +1,54 @@
 import useSWR from "swr";
 import axios from "axios";
+import { useRouter } from 'next/router';
+import { useAuth } from '../contexts/Auth'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 
 export default function Campaigns() {
 
-  const onClick = (e) => {
+  const { tokens, userInfo, refreshToken, isAuth } = useAuth()
+  const [connections, setConnections] = useState([]);
+  const [config, setConfig] = useState();
+
+  const router = useRouter();
+
+  let connectionURL = "https://helping-hands-api.herokuapp.com/api/v1/connection/"
+
+  useEffect(() => {
+    (async () => {
+      const data = await axios.get(connectionURL);
+      setConnections(data.data);
+    })();
+  }, []);
+
+  const handleJoiningCampaign = async (e, key) => {
     e.preventDefault()
-    alert("Please login to your account");
+
+    // console.log(isAuth());
+
+    if (!isAuth()) {
+      await refreshToken()
+  }
+
+    if (tokens) {
+      setConfig({
+        headers: {
+          'Authorization': `Bearer ${tokens.access}`
+        }
+      })
+
+      let connection = {
+        campaign: key,
+        member: userInfo
+      }
+      axios.post(connectionURL, connection, config)
+      // console.log(111111, e.target.text);
+    }
+    else {
+      router.push('/login')
+    }
 
   }
 
@@ -17,10 +57,10 @@ export default function Campaigns() {
 
 
   const { data, error } = useSWR(url, fetcher);
-  console.log(data)
+  // console.log(data)
 
   if (error) {
-    return <p>Loading failed...</p> ;
+    return <p>Loading failed...</p>;
   }
 
   // Card placeholder
@@ -151,9 +191,11 @@ export default function Campaigns() {
     );
   }
 
-
   return (data && data.map(campaign => {
-    
+
+    let key = campaign.id
+    let isMember = connections.filter(element => element.campaign === key && element.member === userInfo)[0]
+    // console.log(isMember, isMember ? true : false);
 
     return (
       <div class="max-w-sm m-5 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" key={campaign.id} >
@@ -200,7 +242,7 @@ export default function Campaigns() {
               </span></div>
 
           </div>
-       
+
 
           <section class="px-4 py-2 mt-2">
             <div class="flex items-center justify-between">
@@ -223,7 +265,25 @@ export default function Campaigns() {
 
                 </div>
               </div>
-              <button type="submit" onClick={onClick} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Join</button>
+
+              {isMember ?
+                <div
+                  type="submit"
+                  class="text-white bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                >
+                  Joined
+                </div>
+                :
+                <button
+                  type="submit"
+                  onClick={(e) => handleJoiningCampaign(e, key)}
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Join
+                </button>
+              }
+
+
 
             </div>
           </section>

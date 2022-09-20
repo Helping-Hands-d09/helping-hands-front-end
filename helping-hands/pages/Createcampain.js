@@ -22,9 +22,6 @@ export default function Createdcampiagn() {
 
     useEffect(() => {
         (async () => {
-            if (isAuth) {
-                refreshToken()
-            }
 
             const categoriesData = await axios.get(categoriesURL);
             const locationsData = await axios.get(locationsURL);
@@ -32,17 +29,25 @@ export default function Createdcampiagn() {
             setCategories(categoriesData.data);
             setLocations(locationsData.data);
 
-            setConfig({
-                headers: {
-                    'Authorization': `Bearer ${tokens.access}`
-                }
-            })
         })();
     }, []);
-    console.log(config);
+    // console.log(config);
 
     async function handleCreateCampaign(e) {
         e.preventDefault();
+
+        // console.log(isAuth());
+
+        if (!isAuth()) {
+            await refreshToken()
+        }
+
+        setConfig({
+            headers: {
+                'Authorization': `Bearer ${tokens.access}`
+            }
+        })
+
         let userInput = {
             organizer_name: parseInt(userInfo),
             category_name: parseInt(e.target.category.value),
@@ -55,12 +60,8 @@ export default function Createdcampiagn() {
         }
 
         console.log(userInput);
-        let res = axios.post(createCampaignURL, userInput, config);
-        console.log("000000000", res.data);
-
-        // let connection = {
-        //     campaign: res
-        // }
+        axios.post(createCampaignURL, userInput, config)
+            .then(response => axios.post(connectionInfoURL, { campaign: response.data.id, member: parseInt(userInfo) }, config))
 
         // router.push('/HomePage');
     }

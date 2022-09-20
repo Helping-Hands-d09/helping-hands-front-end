@@ -26,8 +26,9 @@ export function AuthProvider({ children }) {
     const [tokens, setTokens] = useState(() =>
     // lsData ? JSON.parse(lsData.access) : null
     {
-        console.log(cookie.load('AuthTokens'));
+        // console.log(cookie.load('AuthTokens'));
         return cookie.load('AuthTokens') ? cookie.load('AuthTokens') : null
+        // cookie.load('AuthTokens')
     }
     );
     const [userInfo, setUserInfo] = useState(() => {
@@ -91,7 +92,7 @@ export function AuthProvider({ children }) {
 
     function isAuth() {
         try {
-            // console.log(4444444, tokens.access, tokens.refresh)
+            console.log(4444444, tokens.access, tokens.refresh)
             if (tokens.access && tokens.refresh) {
                 const access = jwt_decode(tokens?.access);
                 const refresh = jwt_decode(tokens?.refresh);
