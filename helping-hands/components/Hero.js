@@ -69,16 +69,19 @@ export default function Hero() {
             <br /> The importance of volunteering is to enhance your social
             skills while helping others. <br /> These volunteer opportunities
             allow you to create new relationships and contacts, continuously
-            meet people from multiple cultural backgrounds, and enable you to
-            take on new activities and work that you would like to try out.
+            meet people <br /> from multiple cultural backgrounds, and enable
+            you to take on new activities and work that you would like to try
+            out.
             <br />
             Volunteer options vary; some are online, such as volunteering in the
-            fields of writing or design. Other volunteer opportunities are on
-            site with an organization or conducting fieldwork in the same city
-            or in several cities. The Helping Hands platform provides
-            opportunities for many local volunteer opportunities in Jordan, all
-            of which provide participants with valuable experience that they can
-            benefit from in the future.
+            fields of writing or design.
+            <br /> Other volunteer opportunities are on site with an
+            organization or conducting fieldwork in the same city or in several
+            cities.
+            <br /> The Helping Hands platform provides opportunities for many
+            local volunteer opportunities in Jordan, all of which provide <br />{" "}
+            participants with valuable experience that they can benefit from in
+            the future.
           </p>
         </div>
       </div>

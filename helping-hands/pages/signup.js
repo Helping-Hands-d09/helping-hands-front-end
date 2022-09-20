@@ -38,7 +38,6 @@ export default function signup(props) {
   }, []);
 
   return (
-
     <>
       <section class="bg-gray-50 dark:bg-gray-900">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -53,7 +52,10 @@ export default function signup(props) {
               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign up
               </h1>
-              <form onSubmit={handleSignup} wtx-context="9855C790-E4BE-4AD0-86FD-09FA92788929">
+              <form
+                onSubmit={handleSignup}
+                wtx-context="9855C790-E4BE-4AD0-86FD-09FA92788929"
+              >
                 <div class="mb-6">
                   <label
                     for="email"
@@ -64,7 +66,7 @@ export default function signup(props) {
                   <input
                     type="text"
                     id="text"
-                    name='username'
+                    name="username"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="John"
                     required=""
@@ -81,7 +83,7 @@ export default function signup(props) {
                     <input
                       type="text"
                       id="first_name"
-                      name='firstname'
+                      name="firstname"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="John"
                       required=""
@@ -98,7 +100,7 @@ export default function signup(props) {
                     <input
                       type="text"
                       id="last_name"
-                      name='lastname'
+                      name="lastname"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Doe"
                       required=""
@@ -115,7 +117,7 @@ export default function signup(props) {
                     <input
                       type="tel"
                       id="phone"
-                      name='phone'
+                      name="phone"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="123-45-678"
                       required=""
@@ -134,10 +136,12 @@ export default function signup(props) {
                       id="location"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
-                      {locations.map(item => {
+                      {locations.map((item) => {
                         return (
-                          <option value={item.city_name}>{item.city_name}</option>
-                        )
+                          <option value={item.city_name}>
+                            {item.city_name}
+                          </option>
+                        );
                       })}
                     </select>
                   </div>
@@ -152,7 +156,7 @@ export default function signup(props) {
                   <input
                     type="email"
                     id="email"
-                    name='email'
+                    name="email"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="john.doe@company.com"
                     required=""
@@ -169,7 +173,7 @@ export default function signup(props) {
                   <input
                     type="password"
                     id="password"
-                    name='password'
+                    name="password"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="•••••••••"
                     required=""
@@ -186,7 +190,7 @@ export default function signup(props) {
                   <input
                     type="password"
                     id="confirm_password"
-                    name='confirmpassword'
+                    name="confirmpassword"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="•••••••••"
                     required=""
