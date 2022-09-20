@@ -12,9 +12,13 @@ function MyApp({ Component, pageProps }) {
     <AuthProvider>
       <Head>
         <title>  Helping Hands  </title>
-        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
         <link rel="icon" href="image/hand-13.jpg" />
-
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous"
+        />
       </Head>
       <NavBar />
       <Component {...pageProps} />

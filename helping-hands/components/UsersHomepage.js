@@ -5,6 +5,7 @@ import CampaignsAsPosts from "./CampaignsAsPosts";
 import { useAuth } from '../contexts/Auth'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap'
 
 export default function MyPosts() {
 
@@ -16,6 +17,11 @@ export default function MyPosts() {
 
   const [userData, setUserData] = useState();
   const [connections, setConnections] = useState([]);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     (async () => {
@@ -34,11 +40,11 @@ export default function MyPosts() {
   // console.log("c", createdCampaigns);
   // console.log("j", joinedCampaigns);
 
-  if (createdCampaigns.length > 3){
+  if (createdCampaigns.length > 3) {
     createdCampaigns = createdCampaigns.slice(0, 3)
   }
 
-  if (joinedCampaigns.length > 3){
+  if (joinedCampaigns.length > 3) {
     joinedCampaigns = joinedCampaigns.slice(0, 3)
   }
 
@@ -58,12 +64,50 @@ export default function MyPosts() {
             <div class="flex justify-between flex-shrink-0 px-8 py-4 border-b border-gray-300">
               <h1 class="text-xl font-semibold">Feed Title</h1>
               <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
-                  <a href="Createcampain">Create Post</a>
-                </button>
+                {/* <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
+                  <a href="Createpost">Create Post</a>
+                </button> */}
                 {/* <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
                   <a href="Createcampain">Create Campaign</a>
                 </button> */}
+
+                <Button variant="primary" onClick={handleShow}>
+                  Launch demo modal
+                </Button>
+
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Form>
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                          type="email"
+                          placeholder="name@example.com"
+                          autoFocus
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlTextarea1"
+                      >
+                        <Form.Label>Example textarea</Form.Label>
+                        <Form.Control as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                      Save Changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+
               </div>
             </div>
 
