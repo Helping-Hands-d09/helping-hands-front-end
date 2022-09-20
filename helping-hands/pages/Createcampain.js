@@ -67,7 +67,7 @@ export default function Createdcampiagn() {
 
     return (
         <>
-            <div className="mx-20 my-10 p-10 rounded border border-gray-300">
+            <div className="p-10 mx-20 my-10 border border-gray-300 rounded">
                 <form onSubmit={handleCreateCampaign} wtx-context="4DA1B68B-6F73-461A-81F0-6A3B7316A0EE">
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         {/* <div>

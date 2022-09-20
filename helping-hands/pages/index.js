@@ -12,13 +12,13 @@ export default function Home() {
 
   return (
     <>
-      <Script
+      {/* <Script
         id="stripe-js"
         src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"
         onLoad={() => {
           console.log("has been loaded");
         }}
-      />
+      /> */}
       {/* <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script> */}
       {/* {
         tokens ? 
