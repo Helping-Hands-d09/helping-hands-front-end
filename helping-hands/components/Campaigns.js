@@ -2,9 +2,16 @@ import useSWR from "swr";
 import axios from "axios";
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Router from "next/router";
+import {useRouter} from "next/router";
+
 
 
 export default function Campaigns() {
+
+  const [savedData, setSavedData] = useState({});
+  const router = useRouter();
+
 
   const onClick = (e) => {
     e.preventDefault()
@@ -12,12 +19,32 @@ export default function Campaigns() {
 
   }
 
+  const filterData= ( id)=> {
+    data.filter(value =>{
+      if (value.id == id){ 
+        console.log(2222,value)
+        setSavedData(value)
+      }
+     
+    })
+    router.push({
+      pathname:"/SelectedCampaign",
+      query:{savedData}
+      })
+}
+
+      console.log(66,savedData)
+
+        useEffect(() => {
+          localStorage.setItem('items', JSON.stringify(savedData));
+        }, [savedData]);
+ 
   const url = 'https://helping-hands-api.herokuapp.com/api/v1/campaign';
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
 
 
   const { data, error } = useSWR(url, fetcher);
-  console.log(data)
+  // console.log(data)
 
   if (error) {
     return <p>Loading failed...</p> ;
@@ -153,7 +180,10 @@ export default function Campaigns() {
 
 
   return (data && data.map(campaign => {
-    
+    // href={{
+    //   pathname: "/SelectedCampaign",
+    //   query: savedData,
+    // }}
 
     return (
       <div class="max-w-sm m-5 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" key={campaign.id} >
@@ -164,7 +194,8 @@ export default function Campaigns() {
 
         <div class="p-5">
           <div class="flex flex-wrap items-center flex-1 px-4 py-1 text-center mx-auto">
-            <a href="#" class="hover:underline">
+            <a 
+           onClick={() => filterData(campaign.id)}  class="hover:underline">
               <h2 class="text-2xl font-bold tracking-normal text-gray-800">
                 {campaign.title}
               </h2>
