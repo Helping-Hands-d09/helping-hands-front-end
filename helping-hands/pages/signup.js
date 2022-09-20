@@ -26,19 +26,8 @@ export default function signup(props) {
 
   const [locations, setLocations] = useState([]);
 
-  // const [userNameInput, setUserNameInput] = useState();
-  // const [firstNameInput, setFirstNameInput] = useState();
-  // const [lastNameInput, setLastNameInput] = useState();
-  // const [phoneInput, setPhoneInput] = useState();
-  // const [locationInput, setLocationInput] = useState();
-  // const [emailInput, setEmailInput] = useState();
-  // const [passwordInput, setPasswordInput] = useState();
-  // const [confirmPasswordInput, setConfirmPasswordInput] = useState();
-
   // const locationsURL = "http://127.0.0.1:8000/api/v1/campaign/location/"
   const locationsURL = "https://helping-hands-api.herokuapp.com/api/v1/campaign/location/"
-  // const registerURL = "http://127.0.0.1:8000/api/v1/users/register/";
-  // const registerURL = "https://helping-hands-api.herokuapp.com/api/v1/users/register/";
 
   useEffect(() => {
     (async () => {
@@ -47,29 +36,6 @@ export default function signup(props) {
     })();
     // console.log(locations);
   }, []);
-
-  // async function createUser(userInfo) {
-  //   axios.post(registerURL, userInfo).then(res => console.log(res));
-  // }
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   props.render(false)
-  //   props.setLoginRender(true)
-
-  //   const bodyObject = {
-  //     "username": userNameInput,
-  //     "email": emailInput,
-  //     "password": passwordInput,
-  //     "first_name": firstNameInput,
-  //     "last_name": lastNameInput,
-  //     "phone": phoneInput,
-  //     "location": locationInput
-  //   }
-  //   // console.log(bodyObject);
-  //   createUser(bodyObject);
-  // }
 
   return (
 

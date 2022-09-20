@@ -3,6 +3,7 @@ import { AuthProvider } from "../contexts/Auth";
 import Head from 'next/head'
 import NavBar from "../components/NavBar";
 import Footer from '../components/Footer'
+import dynamic from "next/dynamic";
 
 
 function MyApp({ Component, pageProps }) {
@@ -10,8 +11,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
       <Head>
-      <link rel="icon" href="image/hand-13.jpg" />
-        <title> Helping Hands </title>
+        <title>  Helping Hands  </title>
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+        <link rel="icon" href="image/hand-13.jpg" />
+
       </Head>
       <NavBar />
       <Component {...pageProps} />
@@ -21,4 +24,8 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+// export default MyApp
+
+export default dynamic(() => Promise.resolve(MyApp), {
+  ssr: false,
+});

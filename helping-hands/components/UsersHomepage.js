@@ -12,35 +12,41 @@ export default function MyPosts() {
 
   const { userInfo } = useAuth();
   const userInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/users/"
+  const campaignInfoURL="https://helping-hands-api.herokuapp.com/api/v1/campaign/"
  
   const connectionInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/connection/member-campaigns/slug?id="
  
   const [savedData, setSavedData] = useState({});
   const router = useRouter();
-  const filterData= ( id)=> {
-    console.log(3333,id)
-    console.log(11111,createdCampaigns)
-    createdCampaigns.filter(value =>{
-      
-      if (value.id == id){ 
-        console.log("hello")
-        setSavedData(value)
-      }
-      console.log(2222,value.campaign.id)
+  const filterData= async( id)=> {
+    // console.log(3333,id)
+    // console.log(11111,createdCampaigns)
+    
 
-    })
+  
+    let res=await axios.get(campaignInfoURL+id)
+    console.log(res.data)
+   let storge= await localStorage.setItem('items', JSON.stringify(res.data));
+    // console.log("hello")
+    // createdCampaigns.filter(value =>{
+      
+    //   if (value.id == id){ 
+    //     setSavedData(value)
+    //   }
+    //   console.log(2222,value.campaign.id)
+
+    // })
     router.push({
       pathname:"/SelectedCampaign",
-      query:{savedData}
+      query:{storge}
       })
 }
 
-
       console.log(66,savedData)
 
-        useEffect(() => {
-          localStorage.setItem('items', JSON.stringify(savedData));
-        }, [savedData]);
+        // useEffect(() => {
+        //   localStorage.setItem('items', JSON.stringify(savedData));
+        // }, [savedData]);
         
         
   const [userData, setUserData] = useState();
@@ -167,7 +173,7 @@ export default function MyPosts() {
                         </span>
                         <div class="flex flex-col flex-grow ml-2">
                           <div class="flex text-sm">
-                        <a onClick={() => filterData(item.id)}>    <span class="font-semibold">{item.campaign.title}</span></a>
+                        <a onClick={() => filterData(item.campaign.id)}>    <span class="font-semibold">{item.campaign.title}</span></a>
                             <span class="ml-1 opacity-50">{item.campaign.date}</span>
                           </div>
                           <p class="mt-1 text-sm">
@@ -190,7 +196,7 @@ export default function MyPosts() {
                         </span>
                         <div class="flex flex-col flex-grow ml-2">
                           <div class="flex text-sm">
-                            <span class="font-semibold">{item.campaign.title}</span>
+                          <a onClick={() => filterData(item.campaign.id)}>       <span class="font-semibold">{item.campaign.title}</span></a>
                             <span class="ml-1 opacity-50">{item.campaign.date}</span>
                           </div>
                           <p class="mt-1 text-sm">
@@ -203,6 +209,21 @@ export default function MyPosts() {
                 }
   
               </div>
+
+              <div class="flex w-full py-4 border-b border-gray-300">
+                <span class="flex-shrink-0 w-10 h-10 bg-gray-400 rounded-full"></span>
+                <div class="flex flex-col flex-grow ml-2">
+                  <div class="flex text-sm">
+                    <span class="font-semibold">Username</span>
+                    <span class="ml-1">@username</span>
+                  </div>
+                  <p class="mt-1 text-sm">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, et
+                    dolore magna aliqua.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
