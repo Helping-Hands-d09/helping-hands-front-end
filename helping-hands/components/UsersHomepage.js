@@ -5,6 +5,7 @@ import CampaignsAsPosts from "./CampaignsAsPosts";
 import { useAuth } from '../contexts/Auth'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import PostInput from "./PostInput";
 
 export default function MyPosts() {
 
@@ -41,9 +42,7 @@ export default function MyPosts() {
             <div class="flex justify-between flex-shrink-0 px-8 py-4 border-b border-gray-300">
               <h1 class="text-xl font-semibold">Feed Title</h1>
               <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
-                  <a href="Createcampain">Create Post</a>
-                </button>
+                <PostInput/>
                 <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
                   <a href="Createcampain">Create Campaign</a>
                 </button>
