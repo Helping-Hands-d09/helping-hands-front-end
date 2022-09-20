@@ -17,20 +17,11 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
 
-    // const [lsData, setLsData] = useState(null)
     let lsData = null
     if (typeof window !== 'undefined') {
         // lsData = localStorage.getItem("AuthTokens");
         lsData = cookie.load('AuthTokens')
     }
-
-    //     useEffect(() => {
-    //         if (typeof window !== 'undefined') {
-    //             setLsData(localStorage.getItem("AuthTokens"))
-    //         }
-    // }, [])
-
-    // useEffect(() => setLsData(localStorage.getItem("AuthTokens")), [])
 
     const [tokens, setTokens] = useState(() =>
     // lsData ? JSON.parse(lsData.access) : null

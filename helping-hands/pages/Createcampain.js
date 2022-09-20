@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/Auth'
 
 export default function Createdcampiagn() {
     const router = useRouter();
-    const { tokens, userInfo, refreshToken } = useAuth();
+    const { tokens, userInfo, refreshToken, isAuth } = useAuth();
 
     // console.log(tokens);
 
@@ -22,7 +22,9 @@ export default function Createdcampiagn() {
 
     useEffect(() => {
         (async () => {
-            refreshToken()
+            if (isAuth) {
+                refreshToken()
+            }
 
             const categoriesData = await axios.get(categoriesURL);
             const locationsData = await axios.get(locationsURL);
@@ -34,7 +36,7 @@ export default function Createdcampiagn() {
                 headers: {
                     'Authorization': `Bearer ${tokens.access}`
                 }
-            }) 
+            })
         })();
     }, []);
     console.log(config);
@@ -51,7 +53,7 @@ export default function Createdcampiagn() {
             available_sets: parseInt(e.target.available_seats.value),
             image: null
         }
-        
+
         console.log(userInput);
         let res = axios.post(createCampaignURL, userInput, config);
         console.log("000000000", res.data);

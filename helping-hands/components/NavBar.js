@@ -1,10 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import Link from 'next/link'
-import Image from 'next/image'
-// \image\hand-13.jpg
 import { useAuth } from '../contexts/Auth'
-import { useContext } from "react";
 import { useRouter } from 'next/router';
+import { Dropdown } from "flowbite-react";
 
 export default function Header(props) {
 
@@ -74,16 +71,16 @@ export default function Header(props) {
               ></input>
             </div>
 
-            {/* {tokens &&
+            {tokens &&
               <>
-                <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" className="flex items-center text-sm font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:mr-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white" type="button">
+                {/* <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" className="flex items-center text-sm font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:mr-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white" type="button">
                   <span className="sr-only">Open user menu</span>
                   <img className="mr-2 w-8 h-8 rounded-full" src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" alt="user photo" />
                   Bonnie Green
                   <svg className="w-4 h-4 mx-1.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                 </button>
 
-                
+
                 <div id="dropdownAvatarName" className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                   <div className="py-3 px-4 text-sm text-gray-900 dark:text-white">
                     <div className="font-medium ">Pro User</div>
@@ -110,20 +107,35 @@ export default function Header(props) {
                     </button>
 
                   </div>
-                </div>
+                </div> */}
 
-                
+                <button
+                  className='ml-8 bg-gray-300 w-16 rounded hover:bg-gray-200'
+                  onClick={() => {
+                    logout()
+                    router.push('/')
+                  }}>
+                  Logout
+                </button>
+
+                {/* <Dropdown label="Dropdown button">
+                  <Dropdown.Item>
+                    Dashboard
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    Settings
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    Earnings
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    Sign out
+                  </Dropdown.Item>
+                </Dropdown> */}
 
               </>
-            } */}
-            <button
-              className='ml-8 bg-gray-300 w-16 rounded hover:bg-gray-200'
-              onClick={() => {
-                logout()
-                router.push('/')
-              }}>
-              Logout
-            </button>
+            }
+
 
             <button
               data-collapse-toggle="navbar-search"

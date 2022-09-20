@@ -3,6 +3,7 @@ import { AuthProvider } from "../contexts/Auth";
 import Head from 'next/head'
 import NavBar from "../components/NavBar";
 import Footer from '../components/Footer'
+import dynamic from "next/dynamic";
 
 
 function MyApp({ Component, pageProps }) {
@@ -23,4 +24,8 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+// export default MyApp
+
+export default dynamic(() => Promise.resolve(MyApp), {
+  ssr: false,
+});
