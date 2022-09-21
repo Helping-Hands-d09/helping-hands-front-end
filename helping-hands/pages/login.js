@@ -19,7 +19,7 @@ export default function Login(props) {
     // console.log(check);
 
     if (check) {
-      router.push('/HomePage');
+      router.push('/Profile');
     }
     else {
       setIsUncorrect(true)

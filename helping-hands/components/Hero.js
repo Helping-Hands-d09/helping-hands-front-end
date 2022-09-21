@@ -9,14 +9,13 @@ import {
 } from "pure-react-carousel";
 import React from "react";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { useAuth } from '../contexts/Auth';
-import { useRouter } from 'next/router'
+import { useAuth } from "../contexts/Auth";
+import { useRouter } from "next/router";
 
 export default function Hero() {
-
   const { tokens } = useAuth();
-  const router = useRouter()
-// onClick={() => router.push("/signup")}
+  const router = useRouter();
+  // onClick={() => router.push("/signup")}
   return (
     <>
       <section className="dark:bg-gray-800 dark:text-gray-100">
@@ -26,7 +25,8 @@ export default function Hero() {
               Welcome to Helping Hands
             </h1>
             <p className="mt-6 mb-8 text-lg sm:mb-12">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              New platform provides opportunities for many local volunteer
+              opportunities in Jordan.
               {/* <br className="hidden md:inline lg:hidden">turpis pulvinar, est scelerisque ligula sem/> */}
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
@@ -56,42 +56,104 @@ export default function Hero() {
 
       {/* heading */}
 
-      <div className="m-20">
-        <div className="flex justify-center">
-          <h2 class="text-4xl font-extrabold dark:text-white">
-            Volunteer Work
-          </h2>
+      <section class="text-black-600 body-font">
+        <div class="container px-5  mx-auto">
+          <div class="text-center mb-10">
+            <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900  ">
+              Volunteer Work
+            </h1>
+            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+              Volunteerism is defined as an unpaid activity for people to assist
+              institutions, non-profit organizations, or individuals
+            </p>
+          </div>
+          <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  class="text-indigo-700 w-6 h-6 flex-shrink-0 mr-4"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">
+                  Enhance your social skills while helping others.
+                </span>
+              </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  class="text-indigo-700 w-6 h-6 flex-shrink-0 mr-4"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">
+                  Create new relationships, continuously meet people
+                </span>
+              </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  class="text-indigo-700 w-6 h-6 flex-shrink-0 mr-4"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">
+                  Take on new activities that you would like to try out.
+                </span>
+              </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  class="text-indigo-700 w-6 h-6 flex-shrink-0 mr-4"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">
+                  Volunteer in the fields of writing or design
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex justify-center">
-          <p class="my-4 text-lg text-gray-500 text-center">
-            Volunteerism is defined as an unpaid activity for people to assist
-            institutions, non-profit organizations, or individuals.
-            <br /> The importance of volunteering is to enhance your social
-            skills while helping others. <br /> These volunteer opportunities
-            allow you to create new relationships and contacts, continuously
-            meet people <br /> from multiple cultural backgrounds, and enable
-            you to take on new activities and work that you would like to try
-            out.
-            <br />
-            Volunteer options vary; some are online, such as volunteering in the
-            fields of writing or design.
-            <br /> Other volunteer opportunities are on site with an
-            organization or conducting fieldwork in the same city or in several
-            cities.
-            <br /> The Helping Hands platform provides opportunities for many
-            local volunteer opportunities in Jordan, all of which provide <br />{" "}
-            participants with valuable experience that they can benefit from in
-            the future.
-          </p>
-        </div>
-      </div>
+      </section>
 
       {/* features section */}
 
-      <div class="my-20 bg-white py-12">
+      <div class="my-10 bg-white py-11">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="lg:text-center">
-            <p class="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
+            <p class="mt-20 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
               A better way to volunteer
             </p>
             <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
@@ -149,8 +211,8 @@ export default function Hero() {
 
       {/* Install pure-react-carousel using -> npm i pure-react-carousel */}
       <div className="">
-        <div className="flex items-center justify-between h-full w-full absolute z-0">
-          <div className="w-1/3 bg-white h-full" />
+        <div className="flex items-center justify-between   w-full absolute z-0">
+          <div className="w-1/3 bg-white  " />
           <div className="w-4/6 ml-16 bg-gray-100 h-full" />
         </div>
         <div className="xl:px-20 px-8 py-20 2xl:mx-auto 2xl:container relative z-40">
@@ -189,16 +251,16 @@ export default function Hero() {
                         />
                       </div>
                     </div>
-                    <div className="md:w-1/3 lg:w-1/3 xl:ml-32 md:ml-20 md:mt-0 mt-4 flex flex-col justify-between">
+                    <div className="md:w-1/3 lg:w-1/3 xl:ml-32 md:ml-20 mt-28 flex flex-col">
                       <div>
                         <h1 className="text-2xl font-semibold xl:leading-loose text-gray-800">
                           Life's most persistent and urgent question is, What
                           are you doing for others?
                         </h1>
-                        <p className="text-base font-medium leading-6 mt-4 text-gray-600"></p>
+                      
                       </div>
-                      <div className="md:mt-0 mt-8">
-                        <p className="text-base font-medium leading-4 text-gray-800">
+                      <div className=" mt-14 ">
+                        <p className="text-base   font-medium leading-4 text-gray-800">
                           -Martin Luther King. Jr.
                         </p>
                       </div>
@@ -225,14 +287,14 @@ export default function Hero() {
                         />
                       </div>
                     </div>
-                    <div className="md:w-1/3 lg:w-1/3 xl:ml-32 md:ml-20 md:mt-0 mt-4 flex flex-col justify-between">
+                    <div className="md:w-1/3 lg:w-1/3 xl:ml-32 md:ml-20 mt-28 flex flex-col">
                       <div>
                         <h1 className="text-2xl font-semibold xl:leading-loose text-gray-800">
                           Volunteers do not necessarily have the time; they just
                           have the heart.
                         </h1>
                       </div>
-                      <div className="md:mt-0 mt-8">
+                      <div className="mt-14">
                         <p className="text-base font-medium leading-4 text-gray-800">
                           -Elizabeth Andrew
                         </p>
