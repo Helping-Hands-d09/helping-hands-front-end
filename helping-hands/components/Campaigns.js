@@ -166,7 +166,7 @@ export default function Campaigns() {
 
       {data &&
         data.map((campaign) => {
-          if(campaign.title.toLowerCase().includes(search)){return (
+          if(campaign.title.toLowerCase().includes(search) || campaign.location.city_name.toLowerCase().includes(search)||campaign.category.title.toLowerCase().includes(search)){return (
             <div
               class="max-w-sm m-5 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
               key={campaign.id}
