@@ -9,17 +9,26 @@ export default function Login(props) {
   const [email, setEmail] = useState('');
   const [isUncorrect, setIsUncorrect] = useState(false);
 
+  const [buttonState, setButtonState] = useState(false);
+  const [buttonStyle, setButtonStyle] = useState(
+    "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  );
+
   const { login } = useAuth();
   const router = useRouter();
 
   async function handleLogin(e) {
     e.preventDefault();
+    setButtonState(true)
+    setButtonStyle(
+      "text-white bg-gray-700 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+    )
     let check = await login(e.target.email.value, e.target.password.value);
 
     // console.log(check);
 
     if (check) {
-      router.push('/');
+      router.push('/Profile');
     }
     else {
       setIsUncorrect(true)
@@ -40,7 +49,7 @@ export default function Login(props) {
               <form onSubmit={handleLogin} class="space-y-4 md:space-y-6" action="#">
                 <div>
                   {isUncorrect &&
-                    <p className='text-center text-red-500 mb-8'>The email or password is uncorrect, please try again.</p>
+                    <p className='text-center text-red-500 mb-8'>The email or password is incorrect, please try again.</p>
                   }
                   <label
                     for="email"
@@ -73,36 +82,11 @@ export default function Login(props) {
                     required=""
                   ></input>
                 </div>
-                {/* <div class="flex items-center justify-between">
-                  <div class="flex items-start">
-                    <div class="flex items-center h-5">
-                      <input
-                        id="remember"
-                        aria-describedby="remember"
-                        type="checkbox"
-                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        required=""
-                      ></input>
-                    </div>
-                    <div class="ml-3 text-sm">
-                      <label
-                        for="remember"
-                        class="text-gray-500 dark:text-gray-300"
-                      >
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-                  <a
-                    href="reset-password"
-                    class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div> */}
                 <button
                   type="submit"
                   class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className={buttonStyle}
+                  disabled={buttonState}
                 >
                   Sign in
                 </button>

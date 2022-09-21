@@ -1,53 +1,94 @@
 import useSWR from "swr";
 import axios from "axios";
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
+import { useEffect, useState } from "react";
+import { useAuth } from '../contexts/Auth'
+import Image from "next/image";
 import Router from "next/router";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 
 
 export default function Campaigns() {
-
+  const { tokens, userInfo, refreshToken, isAuth } = useAuth()
+  const [connections, setConnections] = useState([]);
+  const [config, setConfig] = useState(tokens ? {
+    headers: {
+      'Authorization': `Bearer ${tokens.access}`
+    }
+  } : null);
   const [savedData, setSavedData] = useState({});
   const router = useRouter();
 
+  let connectionURL = "https://helping-hands-api.herokuapp.com/api/v1/connection/"
 
-  const onClick = (e) => {
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(savedData));
+    (async () => {
+      const data = await axios.get(connectionURL);
+      setConnections(data.data);
+      if (tokens) {
+        await refreshToken()
+      }
+
+    })();
+  }, [savedData]);
+
+  const handleJoiningCampaign = async (e, key) => {
     e.preventDefault()
-    alert("Please login to your account");
 
+    // console.log(isAuth());
+
+    // if (!isAuth()) {
+    //   await refreshToken()
+    // }
+
+    if (tokens) {
+      e.target.setAttribute("disabled", true)
+      e.target.textContent = "Joined"
+      e.target.removeAttribute("class")
+      e.target.setAttribute("class", "text-white bg-green-700 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 cursor-default")
+      setConfig({
+        headers: {
+          'Authorization': `Bearer ${tokens.access}`
+        }
+      })
+
+      let connection = {
+        campaign: key,
+        member: userInfo
+      }
+      await axios.post(connectionURL, connection, config)
+    }
+    else {
+      router.push('/login')
+    }
   }
 
-  const filterData= ( id)=> {
-    data.filter(value =>{
-      if (value.id == id){ 
-        console.log(2222,value)
+  const filterData = (id) => {
+    data.filter(value => {
+      if (value.id == id) {
+        console.log(2222, value)
         setSavedData(value)
       }
-     
+
     })
     router.push({
-      pathname:"/SelectedCampaign",
-      query:{savedData}
-      })
-}
+      pathname: "/SelectedCampaign",
+      query: { savedData }
+    })
+  }
 
-      console.log(66,savedData)
+  // console.log(66, savedData)
 
-        useEffect(() => {
-          localStorage.setItem('items', JSON.stringify(savedData));
-        }, [savedData]);
- 
   const url = 'https://helping-hands-api.herokuapp.com/api/v1/campaign';
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
 
-
   const { data, error } = useSWR(url, fetcher);
+  const [search, setSearch] = useState('');
   // console.log(data)
 
   if (error) {
-    return <p>Loading failed...</p> ;
+    return <p>Loading failed...</p>;
   }
 
   // Card placeholder
@@ -178,88 +219,127 @@ export default function Campaigns() {
     );
   }
 
+  return (
+    <>
 
-  return (data && data.map(campaign => {
-    // href={{
-    //   pathname: "/SelectedCampaign",
-    //   query: savedData,
-    // }}
 
-    return (
-      <div class="max-w-sm m-5 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" key={campaign.id} >
-        <a href="#">
-          <img src={"/image/hand-13.jpg"} alt="pic"></img>
-          {/* <img src={campaign.image} alt="pic"></img> */}
-        </a>
+      <div class="relative w-full mx-40">
+        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+        </div>
+        <input onChange={ele => { setSearch(ele.target.value) }} type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required />
+      </div>
 
-        <div class="p-5">
-          <div class="flex flex-wrap items-center flex-1 px-4 py-1 text-center mx-auto">
-            <a 
-           onClick={() => filterData(campaign.id)}  class="hover:underline">
-              <h2 class="text-2xl font-bold tracking-normal text-gray-800">
-                {campaign.title}
-              </h2>
-            </a>
-          </div>
-          <hr class="border-gray-300" />
-          <div class="p-1 bg-white-900 h-24 overflow-x-hidden overflow-y-auto text-justify">
-            <p class="flex flex-row flex-wrap w-full px-4 py-2 overflow-hidden text-sm text-justify text-gray-700">
-              {campaign.description}
-            </p>
+      {/*  cards dat here */}
 
-          </div>
-          <hr class="border-gray-300" />
-          <div class="flex items-center justify-between">
-            <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
-              <span class="text-xs font-medium text-black-600 uppercase">
-                Category: {campaign.category.title}
-              </span></div>
-            <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
-              <span class="text-xs font-medium text-black-600 uppercase">
-                location: {campaign.location.city_name}
-              </span></div>
-          </div>
-          <div class="flex items-center justify-between">
+      {data &&
+        data.map((campaign) => {
+          let key = campaign.id
+          let isMember = connections.filter(element => element.campaign === key && element.member === userInfo)[0]
 
-            <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
-              <span class="text-xs font-medium text-black-600 uppercase">
-                Available_sets: {campaign.available_sets}
-              </span></div>
-            <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
-              <span class="text-xs font-medium text-black-600 uppercase">
-                Date: {campaign.date}
-              </span></div>
+          let buttonText = "Join"
+          let buttonStyle = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 
-          </div>
-       
+          if (campaign.title.toLowerCase().includes(search) || campaign.location.city_name.toLowerCase().includes(search) || campaign.category.title.toLowerCase().includes(search)) {
+            return (
+              <div
+                class="max-w-sm m-5 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+                key={campaign.id}
+              >
+                <a href="#">
+                  <img src={"/image/hand-13.jpg"} alt="pic"></img>
+                  {/* <img src={campaign.image} alt="pic"></img> */}
+                </a>
 
-          <section class="px-4 py-2 mt-2">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center flex-1">
-
-                <img
-                  class="object-cover h-10 rounded-full"
-                  src="https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-icon-eps-file-easy-to-edit-default-avatar-photo-placeholder-profile-icon-124557887.jpg"
-                  alt="Avatar"
-                />
-                <div class="flex flex-col mx-2">
-                  <a
-                    href=""
-                    class="font-semibold text-gray-700 hover:underline"
-                  >
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      {campaign.organizer.username}
+                <div class="p-5">
+                  <div class="flex flex-wrap items-center flex-1 px-4 py-1 text-center mx-auto">
+                    <a href="#" class="hover:underline">
+                      <h2
+                        onClick={() => filterData(campaign.id)}
+                        class="text-2xl font-bold tracking-normal text-gray-800"
+                      >
+                        {campaign.title}
+                      </h2>
+                    </a>
+                  </div>
+                  <hr class="border-gray-300" />
+                  <div class="p-1 bg-white-900 h-24 overflow-x-hidden overflow-y-auto text-justify">
+                    <p class="flex flex-row flex-wrap w-full px-4 py-2 overflow-hidden text-sm text-justify text-gray-700">
+                      {campaign.description}
                     </p>
-                  </a>
+                  </div>
+                  <hr class="border-gray-300" />
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
+                      <span class="text-xs font-medium text-black-600 uppercase">
+                        Category: {campaign.category.title}
+                      </span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
+                      <span class="text-xs font-medium text-black-600 uppercase">
+                        location: {campaign.location.city_name}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
+                      <span class="text-xs font-medium text-black-600 uppercase">
+                        Available_sets: {campaign.available_sets}
+                      </span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
+                      <span class="text-xs font-medium text-black-600 uppercase">
+                        Date: {campaign.date}
+                      </span>
+                    </div>
+                  </div>
 
+                  <section class="px-4 py-2 mt-2">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center flex-1">
+                        <img
+                          class="object-cover h-10 rounded-full"
+                          src="https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-icon-eps-file-easy-to-edit-default-avatar-photo-placeholder-profile-icon-124557887.jpg"
+                          alt="Avatar"
+                        />
+                        <div class="flex flex-col mx-2">
+                          <a
+                            href=""
+                            class="font-semibold text-gray-700 hover:underline"
+                          >
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                              {campaign.organizer.username}
+                            </p>
+                          </a>
+                        </div>
+                      </div>
+                      {isMember ?
+                        <div
+                          type="submit"
+                          class="text-white bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                        >
+                          Joined
+                        </div>
+                        :
+                        <button
+                          type="submit"
+                          id="test"
+                          onClick={(e) => {
+                            handleJoiningCampaign(e, key)
+                          }}
+                          class={buttonStyle}
+                        >
+                          {buttonText}
+                        </button>
+                      }
+                    </div>
+                  </section>
                 </div>
               </div>
-              <button type="submit" onClick={onClick} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Join</button>
+            );
+          }
 
-            </div>
-          </section>
-        </div>
-      </div>
-    );
-  }))
+        })}
+    </>
+  );
 }
