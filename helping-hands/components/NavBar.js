@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useAuth } from '../contexts/Auth'
 import { useRouter } from 'next/router';
-import { Dropdown, Nav } from 'react-bootstrap'
+// import { Dropdown, Nav } from 'react-bootstrap'
+import { Dropdown } from "flowbite-react";
 
 
   const userInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/users/"

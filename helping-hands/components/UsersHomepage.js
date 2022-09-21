@@ -13,26 +13,40 @@ export default function MyPosts() {
   const { userInfo } = useAuth();
   const userInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/users/"
   const connectionInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/connection/member-campaigns/slug?id="
+  let postsURL = "https://helping-hands-api.herokuapp.com/api/v1/user-post/"
 
   const [userData, setUserData] = useState();
   const [connections, setConnections] = useState([]);
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const userdata = await axios.get(userInfoURL + userInfo);
-      const connectiondata = await axios.get(connectionInfoURL + userInfo);
+      if (Number.isInteger(userInfo)) {
+        const userdata = await axios.get(userInfoURL + userInfo);
+        const connectiondata = await axios.get(connectionInfoURL + userInfo);
+        const postsdata = await axios.get(postsURL);
 
-      setUserData(userdata.data);
-      setConnections(connectiondata.data);
+        setUserData(userdata.data);
+        setConnections(connectiondata.data);
+        setPosts(postsdata.data.filter(item => item.author === userInfo))
+      }
+      else {
+        const userdata = await axios.get(userInfoURL + userInfo.user_id);
+        const connectiondata = await axios.get(connectionInfoURL + userInfo.user_id);
+        const postsdata = await axios.get(postsURL);
+
+        setUserData(userdata.data);
+        setConnections(connectiondata.data);
+        setPosts(postsdata.data.filter(item => item.author === userInfo.user_id))
+      }
+
+
     })();
-  }, [userInfo]);
+  }, []);
 
   // console.log(userData);
+
+  // console.log(posts.filter(item => item.author === userInfo));
 
   let createdCampaigns = connections.filter(element => element.campaign.organizer.id === userInfo)
   let joinedCampaigns = connections.filter(element => element.campaign.organizer.id != userInfo)
@@ -50,6 +64,12 @@ export default function MyPosts() {
 
   return (
     <>
+      <button
+        className="absolute top-24 left-10 w-16 h-10 hover:opacity-90"
+      >
+        <PostInput userData={userData} setPosts={setPosts} posts={posts} />
+      </button>
+
       {/* Left Section */}
       <div class="flex justify-center h-screen px-4 text-gray-700">
         <div class="flex w-full max-w-screen-lg">
@@ -86,20 +106,18 @@ export default function MyPosts() {
                   </div>
                   <div class="flex justify-center pb-3 text-black">
                     <div class="text-center mr-3 border-r pr-3">
-                      <h2>5</h2>
+                      <h2> {connections.filter(element => element.campaign.organizer.id != userInfo).length} </h2>
                       <span>Joined Campaigns</span>
                     </div>
                     <div class="text-center">
-                      <h2>3</h2>
+                      <h2>{connections.filter(element => element.campaign.organizer.id === userInfo).length}</h2>
                       <span>Created Campaigns</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Personal info here  */}
-
-                <CampaignsAsPosts />
-                {/* <Feed /> */}
+                {/* posts here  */}
+                <CampaignsAsPosts posts={posts} />
               </div>
             }
           </div>
