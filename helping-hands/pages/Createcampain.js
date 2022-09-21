@@ -41,29 +41,30 @@ export default function Createdcampiagn() {
         if (!isAuth()) {
             await refreshToken()
         }
-
-        setConfig({
-            headers: {
-                'Authorization': `Bearer ${tokens.access}`
+        setTimeout(async () => {
+            setConfig({
+                headers: {
+                    'Authorization': `Bearer ${tokens.access}`
+                }
+            })
+    
+            let userInput = {
+                organizer_name: parseInt(userInfo),
+                category_name: parseInt(e.target.category.value),
+                location_name: parseInt(e.target.location.value),
+                title: e.target.title.value,
+                description: e.target.description.value,
+                date: e.target.date.value,
+                available_sets: parseInt(e.target.available_seats.value),
+                image: null
             }
-        })
+    
+            console.log(userInput);
+            await axios.post(createCampaignURL, userInput, config)
+                .then(async response => await axios.post(connectionInfoURL, { campaign: response.data.id, member: parseInt(userInfo) }, config))
+        }, 3000);
 
-        let userInput = {
-            organizer_name: parseInt(userInfo),
-            category_name: parseInt(e.target.category.value),
-            location_name: parseInt(e.target.location.value),
-            title: e.target.title.value,
-            description: e.target.description.value,
-            date: e.target.date.value,
-            available_sets: parseInt(e.target.available_seats.value),
-            image: null
-        }
-
-        console.log(userInput);
-        axios.post(createCampaignURL, userInput, config)
-            .then(response => axios.post(connectionInfoURL, { campaign: response.data.id, member: parseInt(userInfo) }, config))
-
-        // router.push('/HomePage');
+        router.push('/HomePage');
     }
 
     return (

@@ -19,7 +19,7 @@ export default function Login(props) {
     // console.log(check);
 
     if (check) {
-      router.push('/');
+      router.push('/Profile');
     }
     else {
       setIsUncorrect(true)
@@ -40,7 +40,7 @@ export default function Login(props) {
               <form onSubmit={handleLogin} class="space-y-4 md:space-y-6" action="#">
                 <div>
                   {isUncorrect &&
-                    <p className='text-center text-red-500 mb-8'>The email or password is uncorrect, please try again.</p>
+                    <p className='text-center text-red-500 mb-8'>The email or password is incorrect, please try again.</p>
                   }
                   <label
                     for="email"

@@ -14,8 +14,6 @@ export default function MyPosts() {
   const userInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/users/"
   const connectionInfoURL = "https://helping-hands-api.herokuapp.com/api/v1/connection/member-campaigns/slug?id="
 
-  // console.log("0000000", userInfo);
-
   const [userData, setUserData] = useState();
   const [connections, setConnections] = useState([]);
 
@@ -32,7 +30,7 @@ export default function MyPosts() {
       setUserData(userdata.data);
       setConnections(connectiondata.data);
     })();
-  }, []);
+  }, [userInfo]);
 
   // console.log(userData);
 
@@ -48,6 +46,7 @@ export default function MyPosts() {
   if (joinedCampaigns.length > 3) {
     joinedCampaigns = joinedCampaigns.slice(0, 3)
   }
+  // console.log('User info here', userData);
 
   return (
     <>
@@ -62,107 +61,47 @@ export default function MyPosts() {
           */}
 
           <div class="flex flex-col flex-grow border-l border-r border-gray-300">
-            <div class="flex justify-between flex-shrink-0 px-8 py-4 border-b border-gray-300">
+            {/* <div class="flex justify-between flex-shrink-0 px-8 py-4 border-b border-gray-300">
               <h1 class="text-xl font-semibold">Feed Title</h1>
               <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                {/* <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
-                  <a href="Createpost">Create Post</a>
-                </button> */}
-                <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
                 <PostInput/>
-                </button>
-                {/* <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
+                <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
                   <a href="Createcampain">Create Campaign</a>
-                </button> */}
-
-                {/* <Button variant="primary" onClick={handleShow}>
-                  Launch demo modal
-                </Button>
-
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Form>
-                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control
-                          type="email"
-                          placeholder="name@example.com"
-                          autoFocus
-                        />
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
-                      >
-                        <Form.Label>Example textarea</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
-                      </Form.Group>
-                    </Form>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                      Save Changes
-                    </Button>
-                  </Modal.Footer>
-                </Modal> */}
-
+                </button>
               </div>
-            </div>
+            </div> */}
+            {userData &&
+              <div class="flex-grow h-0 overflow-auto">
+                {/* Personal info here  */}
 
-            <div class="flex-grow h-0 overflow-auto">
-
-              {userData &&
-                <div class="flex w-full p-8 border-b border-gray-300 mt-28">
-                  <div class="relative flex w-full">
-                    {/* <!-- Avatar --> */}
-                    <div class="flex flex-col">
-                      <div style={{ marginTop: '-5rem' }}>
-                        <div style={{ height: '9rem', width: '9rem' }} class="md rounded-full relative avatar">
-
-                          {/* if(userData != ''){
-                            <img style={{ height: '9rem', width: '9rem' }} class="md rounded-full relative border-4 border-gray-900" src={userData.image} alt="" />
-                          }
-                          else{
-                            <img style={{ height: '9rem', width: '9rem' }} class="md rounded-full relative border-4 border-gray-900" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&usqp=CAU" alt="" />
-                          } */}
-                          <img style={{ height: '9rem', width: '9rem' }} class="md rounded-full relative border-4 border-gray-900" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&usqp=CAU" alt="" />
-
-                          <div class="absolute"></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="flex flex-1">
-                      {/* <!-- Profile info --> */}
-                      <div class="space-y-2 justify-center w-full ml-3">
-                        {/* <!-- User basic--> */}
-                        <div>
-                          {/* <h2 class="text-xl leading-6 font-bold text-white">ℜ??????ℜ??????.dev</h2> */}
-                          <p class="text-sm leading-5 font-medium text-gray-600">@{userData.username}</p>
-                        </div>
-                        {/* <!-- Description and others --> */}
-                        <div class="mt-3">
-                          <p class="text-black leading-tight mb-2">Description</p>
-                          <div class="text-gray-600 flex">
-                            <span class="flex mr-2">{userData.location}</span>
-                            <span class="flex mr-2"><svg viewBox="0 0 24 24" class="h-5 w-5 paint-icon"><g><path d="M19.708 2H4.292C3.028 2 2 3.028 2 4.292v15.416C2 20.972 3.028 22 4.292 22h15.416C20.972 22 22 20.972 22 19.708V4.292C22 3.028 20.972 2 19.708 2zm.792 17.708c0 .437-.355.792-.792.792H4.292c-.437 0-.792-.355-.792-.792V6.418c0-.437.354-.79.79-.792h15.42c.436 0 .79.355.79.79V19.71z"></path><circle cx="7.032" cy="8.75" r="1.285"></circle><circle cx="7.032" cy="13.156" r="1.285"></circle><circle cx="16.968" cy="8.75" r="1.285"></circle><circle cx="16.968" cy="13.156" r="1.285"></circle><circle cx="12" cy="8.75" r="1.285"></circle><circle cx="12" cy="13.156" r="1.285"></circle><circle cx="7.032" cy="17.486" r="1.285"></circle><circle cx="12" cy="17.486" r="1.285"></circle></g></svg> <span class="leading-5 ml-1">Joined December, 2019</span></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
+                <div class="rounded-3xl overflow-hidden shadow-xl w-auto my-3  bg-gradient-to-t from-blue-400 via-blue-200 to-white  ">
+                  <div class="flex justify-center mt-10">
+                    {/* image here is a link from google  */}
+                    <img src="https://th.bing.com/th/id/OIP.ysdd9pBlwnNdnxQoC8y4KQHaHa?pid=ImgDet&rs=1" class="rounded-full border-solid border-white border-2 -mt-3 w-32 h-32" />
                   </div>
-                </div>}
+                  <div class="text-center px-3 pb-6 pt-2 ">
 
-              <CampaignsAsPosts />
-              {/* <Feed /> */}
-            </div>
+                    <h3 class="text-black text-lg bold font-sans"> {userData.username}</h3>
+                    <p class="mt-2 font-sans font-light text-black"> {userData.location}</p>
+                  </div>
+                  <div class="flex justify-center pb-3 text-black">
+                    <div class="text-center mr-3 border-r pr-3">
+                      <h2>5</h2>
+                      <span>Joined Campaigns</span>
+                    </div>
+                    <div class="text-center">
+                      <h2>3</h2>
+                      <span>Created Campaigns</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Personal info here  */}
+
+                <CampaignsAsPosts />
+                {/* <Feed /> */}
+              </div>
+            }
           </div>
 
           {/* if the user clicks on the profile button we will display the personal info component */}
@@ -173,6 +112,7 @@ export default function MyPosts() {
           {/* Right */}
           <div class="flex flex-col flex-shrink-0 w-1/4 py-4 pl-4">
             <div>
+
               <h3 class="mt-6 font-bold">My Campaigns <span><a href="Createcampain" className="text-sm text-blue-400 hover:text-blue-600">Create +</a></span></h3>
 
               <h4 class="mt-6 font-semibold">Created <span><a href="/" className="text-blue-400 hover:text-blue-600">see more</a></span> </h4>
@@ -225,6 +165,8 @@ export default function MyPosts() {
           </div>
         </div>
       </div>
+      <br></br>
+      <br></br>
     </>
   );
 }
