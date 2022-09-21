@@ -78,16 +78,16 @@ export default function Header(props) {
             {tokens &&
               <>
 
-                {/* <button
+                <button
                   className='ml-8 bg-gray-300 w-16 rounded hover:bg-gray-200'
                   onClick={() => {
                     logout()
                     router.push('/')
                   }}>
                   Logout
-                </button> */}
+                </button>
 
-                <Dropdown>
+                {/* <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Dropdown Button
                   </Dropdown.Toggle>
@@ -97,7 +97,7 @@ export default function Header(props) {
                     <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                   </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> */}
 
               </>
             }

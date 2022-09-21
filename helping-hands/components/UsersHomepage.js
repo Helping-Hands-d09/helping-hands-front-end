@@ -68,13 +68,14 @@ export default function MyPosts() {
                 {/* <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
                   <a href="Createpost">Create Post</a>
                 </button> */}
-                {/* <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
-                <PostInput/>
                 <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
+                <PostInput/>
+                </button>
+                {/* <button class="flex items-center h-8 px-2 text-sm bg-gray-300 rounded-sm hover:bg-gray-400">
                   <a href="Createcampain">Create Campaign</a>
                 </button> */}
 
-                <Button variant="primary" onClick={handleShow}>
+                {/* <Button variant="primary" onClick={handleShow}>
                   Launch demo modal
                 </Button>
 
@@ -109,7 +110,7 @@ export default function MyPosts() {
                       Save Changes
                     </Button>
                   </Modal.Footer>
-                </Modal>
+                </Modal> */}
 
               </div>
             </div>
