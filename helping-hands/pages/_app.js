@@ -4,6 +4,7 @@ import Head from 'next/head'
 import NavBar from "../components/NavBar";
 import Footer from '../components/Footer'
 import dynamic from "next/dynamic";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function MyApp({ Component, pageProps }) {

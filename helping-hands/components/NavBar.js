@@ -22,8 +22,14 @@ export default function Header(props) {
   useEffect(() => {
     (async () => {
       if (userInfo) {
-        const data = await axios.get(userInfoURL + userInfo);
-        setUserData(data.data.username);
+        if (Number.isInteger(userInfo)) {
+          const data = await axios.get(userInfoURL + userInfo);
+          setUserData(data.data.username);
+        }
+        else{
+          const data = await axios.get(userInfoURL + userInfo.user_id);
+          setUserData(data.data.username);
+        }
       }
     })();
   }, []);
@@ -218,7 +224,6 @@ export default function Header(props) {
                       onClick={() => {
                         setShowModal(false);
                         logout();
-                        router.push("/");
                       }}
                       type="button"
                       class="inline-flex w-full justify-center rounded-md border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 bg-blue-100 shadow-sm hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"

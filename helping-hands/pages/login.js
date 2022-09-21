@@ -9,11 +9,20 @@ export default function Login(props) {
   const [email, setEmail] = useState('');
   const [isUncorrect, setIsUncorrect] = useState(false);
 
+  const [buttonState, setButtonState] = useState(false);
+  const [buttonStyle, setButtonStyle] = useState(
+    "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  );
+
   const { login } = useAuth();
   const router = useRouter();
 
   async function handleLogin(e) {
     e.preventDefault();
+    setButtonState(true)
+    setButtonStyle(
+      "text-white bg-gray-700 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+    )
     let check = await login(e.target.email.value, e.target.password.value);
 
     // console.log(check);
@@ -76,6 +85,8 @@ export default function Login(props) {
                 <button
                   type="submit"
                   class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className={buttonStyle}
+                  disabled={buttonState}
                 >
                   Sign in
                 </button>

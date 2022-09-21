@@ -21,7 +21,7 @@ export default function signup(props) {
       location: e.target.location.value
     }
     signup(userInput);
-    router.push('/');
+    router.push('/login');
   }
 
   const [locations, setLocations] = useState([]);

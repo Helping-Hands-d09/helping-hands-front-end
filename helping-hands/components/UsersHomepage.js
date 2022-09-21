@@ -141,6 +141,8 @@ export default function MyPosts() {
 
               <h4 class="mt-6 font-semibold">Created <span><a href="/" className="text-blue-400 hover:text-blue-600">see more</a></span> </h4>
 
+              {createdCampaigns.length === 0 && <p>No created campaigns for now</p>}
+
               {
                 createdCampaigns.map(item => {
                   return (
@@ -169,6 +171,8 @@ export default function MyPosts() {
               }
 
               <h4 class="mt-6 font-semibold">Joined <span><a href="/" className="text-blue-400 hover:text-blue-600">see more</a></span> </h4>
+
+              {joinedCampaigns.length === 0 && <p>No joined campaigns for now</p>}
 
               {
                 joinedCampaigns.map(item => {

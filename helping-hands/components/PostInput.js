@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useAuth } from '../contexts/Auth'
 
@@ -7,37 +7,44 @@ export default function PostInput(props) {
   const { tokens, refreshToken, isAuth } = useAuth();
 
   const [showInput, setShowInput] = useState(false);
-  const [config, setConfig] = useState();
+  const [config, setConfig] = useState(tokens ? {
+    headers: {
+        'Authorization': `Bearer ${tokens.access}`
+    }
+} : null);
 
   let postsURL = "https://helping-hands-api.herokuapp.com/api/v1/user-post/"
+
+  useEffect(() => {
+    (async () => {
+      if (tokens) {
+        await refreshToken()
+      }
+    })();
+  }, []);
 
   async function handleCreatePost(e) {
     e.preventDefault();
 
-    if (!isAuth()) {
-      await refreshToken()
+    // if (!isAuth()) {
+    //   await refreshToken()
+    // }
+
+    // setTimeout(async () => {
+
+    let userInput = {
+      author: parseInt(props.userData.id),
+      title: e.target.postTitle.value,
+      intro: e.target.postTitle.value,
+      body: e.target.postBody.value,
+      image: null
     }
 
-    setTimeout(async () => {
-      setConfig({
-        headers: {
-          'Authorization': `Bearer ${tokens.access}`
-        }
-      })
+    console.log(config);
+    await axios.post(postsURL, userInput, config).then(res => props.setPosts([...props.posts, res.data]))
+    // }, 3000);
 
-      let userInput = {
-        author: parseInt(props.userData.id),
-        title: e.target.postTitle.value,
-        intro: e.target.postTitle.value,
-        body: e.target.postBody.value,
-        image: null
-      }
-
-      console.log(userInput);
-      await axios.post(postsURL, userInput, config).then(res => props.setPosts([...props.posts, res.data]))
-    }, 3000);
-
-    // setShowInput(false)
+    setShowInput(false)
   }
 
   // console.log(props.userData.id);
