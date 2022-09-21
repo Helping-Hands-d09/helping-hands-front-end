@@ -45,7 +45,7 @@ export default function PostInput(props) {
   return (
     <>
       <button
-        class="flex items-center w-full h-full text-3xl bg-gradient-to-t from-blue-400 via-blue-200 to-blue-100 rounded"
+        class="flex items-center w-full h-full text-3xl bg-gradient-to-t from-blue-400 via-blue-200 to-blue-100 rounded-full"
         onClick={() => setShowInput(true)}
       >
         <a className="w-full h-full">+</a>

@@ -12,15 +12,6 @@ export default function Home() {
 
   return (
     <>
-      {/* {
-        tokens ? 
-        <main className='flex justify-around'>
-          <h1>Helloooooooooooooooooooo</h1>
-        </main>
-        :
-        <Hero />
-      } */}
-
       <Hero />
     </>
   );
