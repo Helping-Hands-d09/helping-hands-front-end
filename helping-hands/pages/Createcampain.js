@@ -143,7 +143,7 @@ export default function Createdcampiagn() {
                             >
                                 {locations.map(item => {
                                     return (
-                                        <option value={item.id}>{item.city_name}</option>
+                                        <option key={item.id} value={item.id}>{item.city_name}</option>
                                     )
                                 })}
                             </select>
@@ -162,7 +162,7 @@ export default function Createdcampiagn() {
                             >
                                 {categories.map(item => {
                                     return (
-                                        <option value={item.id}>{item.title}</option>
+                                        <option key={item.id} value={item.id}>{item.title}</option>
                                     )
                                 })}
                             </select>

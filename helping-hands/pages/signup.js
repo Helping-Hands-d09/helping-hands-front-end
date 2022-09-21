@@ -5,8 +5,8 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-export default function signup(props) {
-  const { signup } = useAuth();
+export default function Signup(props) {
+  const { Signup } = useAuth();
   const router = useRouter();
 
   function handleSignup(e) {
@@ -20,7 +20,7 @@ export default function signup(props) {
       phone: e.target.phone.value,
       location: e.target.location.value
     }
-    signup(userInput);
+    Signup(userInput);
     router.push('/login');
   }
 
@@ -138,7 +138,7 @@ export default function signup(props) {
                     >
                       {locations.map((item) => {
                         return (
-                          <option value={item.city_name}>
+                          <option key={item.id} value={item.city_name}>
                             {item.city_name}
                           </option>
                         );

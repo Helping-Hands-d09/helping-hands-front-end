@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
         return lsData ? jwt_decode(lsData).user_id : null;
     });
 
-    async function signup(userInput) {
+    async function Signup(userInput) {
         try {
 
             const res = await axios.post(createUserUrl, userInput);
@@ -121,7 +121,7 @@ export function AuthProvider({ children }) {
 
     const globalState = {
         tokens,
-        signup,
+        Signup,
         login,
         logout,
         refreshToken,

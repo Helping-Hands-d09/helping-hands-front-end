@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap'
 import PostInput from "./PostInput";
 import { useRouter } from "next/router";
+import Image from "next/image"
+import Link from "next/link"
 
 
 export default function MyPosts() {
@@ -91,8 +93,8 @@ export default function MyPosts() {
       {/* Left Section */}
       <div class="flex justify-center h-screen px-4 text-gray-700">
         <div class="flex w-full max-w-screen-lg">
-          {/* if the user clicks the home button on the left we will display the feed component
-            and if the user clicks the campaigns component we will display the campaignsAsPosts component
+          {/* if the user Image the home button on the left we will display the feed component
+            and if the user Image the campaigns component we will display the campaignsAsPosts component
           */}
 
           <div class="flex flex-col flex-grow border-l border-r border-gray-300">
@@ -103,7 +105,7 @@ export default function MyPosts() {
                 <div class="rounded-3xl overflow-hidden shadow-xl w-auto my-3  bg-gradient-to-t from-blue-400 via-blue-200 to-white  ">
                   <div class="flex justify-center mt-10">
                     {/* image here is a link from google  */}
-                    <img src="https://th.bing.com/th/id/OIP.ysdd9pBlwnNdnxQoC8y4KQHaHa?pid=ImgDet&rs=1" class="rounded-full border-solid border-white border-2 -mt-3 w-32 h-32" />
+                    <Image src="https://th.bing.com/th/id/OIP.ysdd9pBlwnNdnxQoC8y4KQHaHa?pid=ImageDet&rs=1" class="rounded-full border-solid border-white border-2 -mt-3 w-32 h-32" />
                   </div>
                   <div class="text-center px-3 pb-6 pt-2 ">
 
@@ -128,7 +130,7 @@ export default function MyPosts() {
             }
           </div>
 
-          {/* if the user clicks on the profile button we will display the personal info component */}
+          {/* if the user Image on the profile button we will display the personal info component */}
           {/* <PersonalInfo/> */}
 
           {/*################# Changing component #########################*/}
@@ -137,18 +139,18 @@ export default function MyPosts() {
           <div class="flex flex-col flex-shrink-0 w-1/4 py-4 pl-4">
             <div>
 
-              <h3 class="mt-6 font-bold">My Campaigns <span><a href="Createcampain" className="text-sm text-blue-400 hover:text-blue-600">Create +</a></span></h3>
+              <h3 class="mt-6 font-bold">My Campaigns <span><Link href="Createcampain" className="text-sm text-blue-400 hover:text-blue-600">Create +</Link></span></h3>
 
-              <h4 class="mt-6 font-semibold">Created <span><a href="/" className="text-blue-400 hover:text-blue-600">see more</a></span> </h4>
+              <h4 class="mt-6 font-semibold">Created <span><Link href="/" className="text-blue-400 hover:text-blue-600">see more</Link></span> </h4>
 
               {createdCampaigns.length === 0 && <p>No created campaigns for now</p>}
 
               {
                 createdCampaigns.map(item => {
                   return (
-                    <div class="flex w-full py-4 border-b border-gray-300">
+                    <div key={item.id} class="flex w-full py-4 border-b border-gray-300">
                       <span class="flex-shrink-0 w-10 h-10 bg-gray-400 rounded-full">
-                        <img src="/image/hand-13.jpg"></img>
+                        <Image src="/image/hand-13.jpg"></Image>
                       </span>
                       <div class="flex flex-col flex-grow ml-2">
                         <div
@@ -170,16 +172,16 @@ export default function MyPosts() {
                 })
               }
 
-              <h4 class="mt-6 font-semibold">Joined <span><a href="/" className="text-blue-400 hover:text-blue-600">see more</a></span> </h4>
+              <h4 class="mt-6 font-semibold">Joined <span><Link href="/" className="text-blue-400 hover:text-blue-600">see more</Link></span> </h4>
 
               {joinedCampaigns.length === 0 && <p>No joined campaigns for now</p>}
 
               {
                 joinedCampaigns.map(item => {
                   return (
-                    <div class="flex w-full py-4 border-b border-gray-300">
+                    <div key={item.id} class="flex w-full py-4 border-b border-gray-300">
                       <span class="flex-shrink-0 w-10 h-10 bg-gray-400 rounded-full">
-                        <img src="/image/hand-13.jpg"></img>
+                        <Image src="/image/hand-13.jpg"></Image>
                       </span>
                       <div class="flex flex-col flex-grow ml-2">
                         <div class="flex text-sm">

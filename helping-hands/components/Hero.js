@@ -1,5 +1,7 @@
 // import Login from "../pages/login"
 // import Signup from "../pages/signup"
+import Image from "next/image"
+
 import {
   CarouselProvider,
   Slider,
@@ -45,7 +47,7 @@ export default function Hero() {
             </div>
           </div>
           <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128  hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <img
+            <Image
               src="/image/card.jpg"
               alt=""
               className="object-contain rounded h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128"
@@ -164,7 +166,7 @@ export default function Hero() {
             <div className="m-10">
               <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
                 <a href="#">
-                  <img
+                  <Image
                     class="rounded-lg "
                     src="/image/petra.jpg"
                     alt="image description"
@@ -178,7 +180,7 @@ export default function Hero() {
             <div className="m-10">
               <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
                 <a href="#">
-                  <img
+                  <Image
                     class="rounded-lg"
                     src="/image/volunteer.jpg"
                     alt="image description"
@@ -192,7 +194,7 @@ export default function Hero() {
             <div className="m-10">
               <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
                 <a href="#">
-                  <img
+                  <Image
                     class="rounded-lg"
                     src="/image/helping.jpg"
                     alt="image description"
@@ -239,13 +241,13 @@ export default function Hero() {
                 <div className="flex">
                   <div className="mt-14 md:flex">
                     <div className="relative lg:w-1/2 sm:w-96 xl:h-96 h-80">
-                      <img
+                      <Image
                         src="/image/martinKing.jpg"
                         alt="image of profile"
                         className="w-full h-full flex-shrink-0 object-fit object-cover shadow-lg rounded"
                       />
                       <div className="w-32 md:flex hidden items-center justify-center absolute top-0 -mr-16 -mt-14 right-0 h-32 bg-indigo-100 rounded-full">
-                        <img
+                        <Image
                           src="https://tuk-cdn.s3.amazonaws.com/can-uploader/testimonial-svg1.svg"
                           alt="commas"
                         />
@@ -254,7 +256,7 @@ export default function Hero() {
                     <div className="md:w-1/3 lg:w-1/3 xl:ml-32 md:ml-20 mt-28 flex flex-col">
                       <div>
                         <h1 className="text-2xl font-semibold xl:leading-loose text-gray-800">
-                          Life's most persistent and urgent question is, What
+                          Lifes most persistent and urgent question is, What
                           are you doing for others?
                         </h1>
                       
@@ -275,13 +277,13 @@ export default function Hero() {
                 >
                   <div className="mt-14 md:flex">
                     <div className="relative lg:w-1/2 sm:w-96 xl:h-96 h-80">
-                      <img
+                      <Image
                         src="/image/elizabeth.jpg"
                         alt="image of profile"
                         className="w-full h-full flex-shrink-0 object-fit object-cover shadow-lg rounded"
                       />
                       <div className="w-32 md:flex hidden items-center justify-center absolute top-0 -mr-16 -mt-14 right-0 h-32 bg-indigo-100 rounded-full">
-                        <img
+                        <Image
                           src="https://tuk-cdn.s3.amazonaws.com/can-uploader/testimonial-svg1.svg"
                           alt="commas"
                         />
@@ -310,7 +312,7 @@ export default function Hero() {
                 role="button"
                 aria-label="previous slide"
               >
-                <img
+                <Image
                   src="https://tuk-cdn.s3.amazonaws.com/can-uploader/testimonal-svg2.svg"
                   alt="previous"
                 />
@@ -321,7 +323,7 @@ export default function Hero() {
                 aria-label="next slide"
                 className="cursor-pointer ml-2"
               >
-                <img
+                <Image
                   src="https://tuk-cdn.s3.amazonaws.com/can-uploader/testimonial-svg3.svg"
                   alt="next"
                 />

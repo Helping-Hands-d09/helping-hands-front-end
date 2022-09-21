@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import Image from "next/image"
+
 export default function PersonalInfo() {
     return (
       <>
@@ -7,7 +9,7 @@ export default function PersonalInfo() {
             <div class="flex flex-wrap justify-center">
               <div class="w-full flex justify-center">
                 <div class="relative">
-                  <img
+                  <Image
                     src="image/hand-13.jpg"
                     class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"
                   />

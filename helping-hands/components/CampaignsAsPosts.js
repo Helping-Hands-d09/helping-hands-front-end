@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-key */
 import useSWR from "swr";
 import axios from "axios";
+import Image from "next/image"
+
 export default function CampaignsAsPosts(props) {
   // console.log(props.posts);
 
@@ -11,7 +13,7 @@ export default function CampaignsAsPosts(props) {
         props.posts.map(post => {
           return (
             <div class="flex w-full p-8 border-b border-gray-300">
-              <img src="https://th.bing.com/th/id/OIP.ysdd9pBlwnNdnxQoC8y4KQHaHa?pid=ImgDet&rs=1" class="flex-shrink-0 w-12 h-12 bg-gray-400 rounded-full" />
+              <Image src="https://th.bing.com/th/id/OIP.ysdd9pBlwnNdnxQoC8y4KQHaHa?pid=ImageDet&rs=1" class="flex-shrink-0 w-12 h-12 bg-gray-400 rounded-full" />
               <div class="flex flex-col flex-grow ml-4">
                 <div class="flex">
                   <span class="font-semibold"> {post.auther}</span>
