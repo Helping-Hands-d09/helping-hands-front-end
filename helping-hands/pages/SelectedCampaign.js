@@ -10,20 +10,34 @@ export default function SelectedCampaign() {
    console.log(11,data)
 
   const [items, setItems] = useState([]);
+  const [category, setcategory] = useState([]);
+  const [location, setlocation] = useState([]);
+  const [userInfo, setuserInfo] = useState([]);
+
   // let location=items.location.city_name
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('items'));
     if (items) {
-     setItems(items);
+    setItems(items);
+    setcategory(items.category);
+    setlocation(items.location)
+    setuserInfo(items.organizer)
     }
   }, []);
 
   console.log(9999999999,items)
+  console.log(1001010111,category)
+  console.log(1111111111,location)
+  console.log(1222222222,userInfo)
+
       return (
         
         <div class="max-w-sm m-5 justify-between bg-white rounded-lg border border-gray-200 shadow-md dark:bg-blue-800 dark:border-blue-700" >
-      
+           <a href="#">
+          <img src={"https://www.sickchirpse.com/wp-content/uploads/2015/02/Amazing-Forest-BaVARIA.jpg"} alt="pic"></img>
+          {/* <img src={campaign.image} alt="pic"></img> */}
+        </a>
   
           <div class="p-5">
             <div class="flex flex-wrap items-center flex-1 px-4 py-1 text-center mx-auto">
@@ -45,12 +59,12 @@ export default function SelectedCampaign() {
               <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
                 <span class="text-xs font-medium text-black-600 uppercase">
                   Category:
-                  {items.category.title}
+                  {category.title}
                 </span></div>
               <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
                 <span class="text-xs font-medium text-black-600 uppercase">
                   location: 
-                  {items.location.city_name}
+                  {location.city_name}
                   
                 </span></div>
             </div>
@@ -68,7 +82,7 @@ export default function SelectedCampaign() {
             </div>
          
 
-            {/* <section class="px-4 py-2 mt-2">
+            <section class="px-4 py-2 mt-2">
               <div class="flex items-center justify-between">
                 <div class="flex items-center flex-1">
   
@@ -83,7 +97,7 @@ export default function SelectedCampaign() {
                       class="font-semibold text-gray-700 hover:underline"
                     >
                       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        {campaign.organizer.username}
+                        {userInfo.username}
                       </p>
                     </a>
   
@@ -91,7 +105,7 @@ export default function SelectedCampaign() {
                 </div>
   
               </div>
-            </section> */}
+            </section>
           </div>
         </div>
  
